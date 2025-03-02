@@ -6,10 +6,9 @@ function agregarAmigo() {
     const inputNombre = document.getElementById("amigo");
     const nombre = inputNombre.value.trim();
 
-    // Validar que el campo no esté vacío
-    if (nombre === "") {
-        // Solo mostrar el mensaje si el campo está vacío
-        alert("Por favor, ingresa un nombre válido.");
+    // Verificamos si el campo está vacío
+    if (!nombre) {
+        // Mostrar la alerta solo si el campo está vacío
         return;
     }
 
@@ -58,5 +57,15 @@ function sortearAmigo() {
 }
 
 // Conectar los botones con las funciones
-document.querySelector(".button-add").addEventListener("click", agregarAmigo);
+document.querySelector(".button-add").addEventListener("click", function() {
+    const inputNombre = document.getElementById("amigo");
+    const nombre = inputNombre.value.trim();
+
+    if (!nombre) {
+        alert("Por favor, ingresa un nombre válido.");
+    } else {
+        agregarAmigo();
+    }
+});
+
 document.querySelector(".button-draw").addEventListener("click", sortearAmigo);
