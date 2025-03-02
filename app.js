@@ -1,21 +1,30 @@
-// Lista para los nombres
+// Lista de nombres
 const listaNombres = [];
 
-// Función que agrega amigos
+// Expresión regular para validar nombres (solo letras y espacios)
+const regexNombreValido = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+
+// Función para agregar amigos
 function agregarAmigo() {
     const inputNombre = document.getElementById("amigo");
-    const nombre = inputNombre.value.trim();  // Elimina espacios en blanco al inicio y final
+    const nombre = inputNombre.value.trim();  // Elimina espacios al inicio y final
 
-    // Validación: Si está vacío, muestra la alerta y no añade nada
+    // Validación: Si está vacío
     if (nombre === "") {
         alert("Por favor, ingresa un nombre válido.");
-        return;  // Detiene la función si el campo está vacío
+        return;  // Detiene la función
     }
 
-    // Si es válido, añade el nombre a la lista
+    // Validación: Solo letras y espacios permitidos
+    if (!regexNombreValido.test(nombre)) {
+        alert("El nombre solo puede contener letras y espacios. No se permiten números ni caracteres especiales.");
+        return;
+    }
+
+    // Añadir el nombre a la lista
     listaNombres.push(nombre);
 
-    // Limpiar el campo
+    // Limpiar el input
     inputNombre.value = "";
 
     // Mostrar la lista actualizada
@@ -27,7 +36,6 @@ function mostrarLista() {
     const lista = document.getElementById("listaAmigos");
     lista.innerHTML = "";  // Limpia el contenido previo
 
-    // Recorremos el arreglo y creamos un <li> por cada nombre
     listaNombres.forEach(nombre => {
         const item = document.createElement("li");
         item.textContent = nombre;
@@ -45,9 +53,8 @@ function sortearAmigo() {
     const indiceSorteado = Math.floor(Math.random() * listaNombres.length);
     const nombreSorteado = listaNombres[indiceSorteado];
 
-    // Mostrar el resultado
     const resultado = document.getElementById("resultado");
-    resultado.innerHTML = "";  // Limpiamos el resultado anterior
+    resultado.innerHTML = "";  // Limpiar resultado anterior
 
     const itemResultado = document.createElement("li");
     itemResultado.textContent = `🎉 El amigo secreto es: ${nombreSorteado}! 🎁`;
