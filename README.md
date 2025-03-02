@@ -9,7 +9,7 @@ Desde luego el objetivo es aplicar la respectiva logica de programación para el
 
 Objetivos especificos: 
 Limpiar la lista existente: 
-Iterar sobre el arreglo: Usa un bucle for para recorrer el arreglo amigos y crear elementos de lista (<li>) para cada título.
+Iterar sobre el arreglo: Usa un bucle for para recorrer el arreglo amigos y crear elementos de lista para cada título.
 
 
 ## ✨ Funcionalidades
