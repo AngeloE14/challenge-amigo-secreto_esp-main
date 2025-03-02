@@ -1,21 +1,21 @@
-// Lista donde guardamos los nombres
+// Lista para los nombres
 const listaNombres = [];
 
-// Función para agregar nombres
+// Función que agrega amigos
 function agregarAmigo() {
     const inputNombre = document.getElementById("amigo");
-    const nombre = inputNombre.value.trim();
+    const nombre = inputNombre.value.trim();  // Elimina espacios en blanco al inicio y final
 
-    // Verificamos si el campo está vacío
-    if (!nombre) {
-        // Mostrar la alerta solo si el campo está vacío
-        return;
+    // Validación: Si está vacío, muestra la alerta y no añade nada
+    if (nombre === "") {
+        alert("Por favor, ingresa un nombre válido.");
+        return;  // Detiene la función si el campo está vacío
     }
 
-    // Añadir nombre a la lista si no está vacío
+    // Si es válido, añade el nombre a la lista
     listaNombres.push(nombre);
 
-    // Limpiar el campo de texto
+    // Limpiar el campo
     inputNombre.value = "";
 
     // Mostrar la lista actualizada
@@ -25,9 +25,9 @@ function agregarAmigo() {
 // Función para mostrar los nombres en la lista
 function mostrarLista() {
     const lista = document.getElementById("listaAmigos");
-    lista.innerHTML = ""; // Limpiar lista anterior
+    lista.innerHTML = "";  // Limpia el contenido previo
 
-    // Crear un <li> por cada nombre en la lista
+    // Recorremos el arreglo y creamos un <li> por cada nombre
     listaNombres.forEach(nombre => {
         const item = document.createElement("li");
         item.textContent = nombre;
@@ -42,30 +42,14 @@ function sortearAmigo() {
         return;
     }
 
-    // Selección aleatoria de un nombre
     const indiceSorteado = Math.floor(Math.random() * listaNombres.length);
     const nombreSorteado = listaNombres[indiceSorteado];
 
     // Mostrar el resultado
     const resultado = document.getElementById("resultado");
-    resultado.innerHTML = "";  // Limpiar resultados anteriores
+    resultado.innerHTML = "";  // Limpiamos el resultado anterior
 
-    // Crear un <li> para el resultado
     const itemResultado = document.createElement("li");
     itemResultado.textContent = `🎉 El amigo secreto es: ${nombreSorteado}! 🎁`;
     resultado.appendChild(itemResultado);
 }
-
-// Conectar los botones con las funciones
-document.querySelector(".button-add").addEventListener("click", function() {
-    const inputNombre = document.getElementById("amigo");
-    const nombre = inputNombre.value.trim();
-
-    if (!nombre) {
-        alert("Por favor, ingresa un nombre válido.");
-    } else {
-        agregarAmigo();
-    }
-});
-
-document.querySelector(".button-draw").addEventListener("click", sortearAmigo);
