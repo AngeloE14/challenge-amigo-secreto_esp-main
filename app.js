@@ -1,10 +1,9 @@
-// El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
 // Lista donde guardamos los nombres
 const listaNombres = [];
 
 // Función para agregar nombres
-function agregarNombre() {
-    const inputNombre = document.getElementById("nombreAmigo");
+function agregarAmigo() {
+    const inputNombre = document.getElementById("amigo");
     const nombre = inputNombre.value.trim();
 
     // Validar que el campo no esté vacío
@@ -48,10 +47,15 @@ function sortearAmigo() {
     const nombreSorteado = listaNombres[indiceSorteado];
 
     // Mostrar el resultado
-    const resultado = document.getElementById("resultadoSorteo");
-    resultado.textContent = `🎉 El amigo secreto es: ${nombreSorteado}! 🎁`;
+    const resultado = document.getElementById("resultado");
+    resultado.innerHTML = "";  // Limpiar resultados anteriores
+
+    // Crear un <li> para el resultado
+    const itemResultado = document.createElement("li");
+    itemResultado.textContent = `🎉 El amigo secreto es: ${nombreSorteado}! 🎁`;
+    resultado.appendChild(itemResultado);
 }
 
 // Conectar los botones con las funciones
-document.getElementById("btnAgregar").addEventListener("click", agregarNombre);
-document.getElementById("btnSortear").addEventListener("click", sortearAmigo);
+document.querySelector(".button-add").addEventListener("click", agregarAmigo);
+document.querySelector(".button-draw").addEventListener("click", sortearAmigo);
