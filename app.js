@@ -8,6 +8,7 @@ function agregarAmigo() {
 
     // Validar que el campo no esté vacío
     if (nombre === "") {
+        // Solo mostrar el mensaje si el campo está vacío
         alert("Por favor, ingresa un nombre válido.");
         return;
     }
