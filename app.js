@@ -1,10 +1,9 @@
-// Lista donde guardaremos los nombres de los amigos
+// Lista donde se guardan los amigos
 const amigos = [];
 
 // Expresión regular para validar que el nombre solo tenga letras y espacios
 const regexNombreValido = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
 
-// Función para añadir un amigo a la lista
 function agregarAmigo() {
     // Obtener el campo de texto donde se escribe el nombre
     const inputNombre = document.getElementById("amigo");
@@ -23,17 +22,22 @@ function agregarAmigo() {
         return;  // Salir de la función si el nombre es inválido
     }
 
-    // Si pasa las validaciones, agregamos el nombre al arreglo
+    // Validar que el nombre no esté repetido
+    if (amigos.includes(nombre)) {
+        alert("Este nombre ya ha sido agregado. Por favor, ingresa un nombre diferente.");
+        return;  // Salir de la función si el nombre ya está en la lista
+    }
+
+    // Si aprueba todas las validaciones, se procede a  agregar el nombre a la lista
     amigos.push(nombre);
 
-    // Limpiar el campo de texto
+    // Limpia el campo de texto
     inputNombre.value = "";
 
-    // Mostrar la lista actualizada
+    // Mostrar la lista
     mostrarListaAmigos();
 }
 
-// Función para mostrar la lista de amigos
 function mostrarListaAmigos() {
     // 1. Obtener el elemento de la lista (ul) donde se mostrarán los nombres
     const lista = document.getElementById("listaAmigos");
@@ -52,15 +56,14 @@ function mostrarListaAmigos() {
     }
 }
 
-// Función para sortear un amigo al azar
 function sortearAmigo() {
-    // Validar que haya al menos un amigo en la lista
+    // Valida que haya al menos un amigo en la lista
     if (amigos.length === 0) {
         alert("No hay nombres en la lista para sortear.");
         return;
     }
 
-    // Seleccionar un índice al azar entre 0 y la cantidad de amigos - 1
+    // Selecciona un índice al azar entre 0 y la cantidad de amigos - 1
     const indiceAleatorio = Math.floor(Math.random() * amigos.length);
     const amigoSeleccionado = amigos[indiceAleatorio];
 
@@ -72,3 +75,4 @@ function sortearAmigo() {
     itemResultado.textContent = `🎉 El amigo secreto es: ${amigoSeleccionado}! 🎁`;
     listaResultado.appendChild(itemResultado);
 }
+
